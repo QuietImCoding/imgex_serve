@@ -1,37 +1,17 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <title>NGINX on Railway</title>
-    <meta name="description" content="Choo Choo!" />
-
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="stylesheet" href="/styles.css?v=1.0" />
+    <title>imgex</title>
   </head>
-
   <body>
-    <main>
-      <img
-        src="https://railway.app/brand/logo-light.svg"
-        alt="Railway logo"
-        class="logo"
-      />
-
-      <h1>NGINX on Railway</h1>
-
-      <p>
-        Choo Choo! This is an example of an NGINX static site running on
-        Railway.
-        <a
-          href="https://github.com/railwayapp/starters/tree/master/examples/nginx"
-          >View source</a
-        >.
-      </p>
-    </main>
-
-    <script src="/script.js"></script>
+    <h1>imgex</h1>
+    <h3>generate images from regular expressions</h3>
+    <canvas width="512px" height="512px" id="img"></canvas>
+    <br/>
+    <textarea placeholder="ur regex here" id="imgex" style="width:512px"></textarea>
+    <br/>
+    <input name="" type="button" value="generate" id="gen"/>
+    <input name="" type="button" value="download" id="down"/>
+    <script type="module" src="imgex.js"></script>
   </body>
 </html>
