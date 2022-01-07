@@ -88,29 +88,36 @@ var imgFromRegex = function(ctx, canvasSize, regex) {
 
 import('./randexp.min.js').then( (test) => { 
     var canvas = document.getElementById('img');
+	var animate = null;
     const ctx = canvas.getContext('2d');
     var genBtn = document.getElementById("gen");
     var downBtn = document.getElementById("down");
+	var animateCheckbox = document.getElementById("animate");
     downBtn.onclick = e => {
 	var link = document.createElement('a');
 	link.download = 'imgex.png';
 	link.href = canvas.toDataURL();
 	link.click();
     };
-    genBtn.onclick = e => {
 	canvas.width = 128;
 	canvas.height = 128;
-	var regex  = document.getElementById('imgex').value;
-	var dat = imgFromRegex(ctx, [128, 128], regex);
-	ctx.putImageData(dat, 0, 0);
-	var imgdata = canvas.toDataURL();
-	var imel = new Image();
-	imel.src = imgdata;
-	imel.onload = function() {
-	    canvas.width = 512;
-	    canvas.height = 512;
-	    ctx.drawImage(imel, 0, 0, 512, 512); 
-	};
+	function redraw() {
+		var regex  = document.getElementById('imgex').value;
+		var dat = imgFromRegex(ctx, [128, 128], regex);
+		ctx.putImageData(dat, 0, 0);
+	}
+	animateCheckbox.addEventListener('click', e => {
+		if (animateCheckbox.checked) {
+			// Switch to requestAnimationFrame if you care
+			animate = setInterval(() => {
+				redraw();
+			}, 200);
+		} else if (animate) {
+			clearInterval(animate);
+		}
+	})
+    genBtn.onclick = e => {
+		redraw();
     };
 });
 
